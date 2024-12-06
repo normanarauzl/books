@@ -1,0 +1,29 @@
+//
+//  Book.swift
+//  ReadingLogs
+//
+//  Created by Norman Arauz on 14/11/24.
+//
+
+import Foundation
+import SwiftData
+
+@Model
+final class Book {
+    var title: String
+    var author: String
+    var publishedYear: Int
+    
+    @Relationship(deleteRule: .cascade, inverse: \Note.book)
+    var notes: [Note]
+    
+    @Relationship(deleteRule: .nullify, inverse: \Genre.books)
+    var genres = [Genre]()
+    
+    init(title: String, author: String, publishedYear: Int) {
+        self.title = title
+        self.author = author
+        self.publishedYear = publishedYear
+        self.notes = [Note]()
+    }
+}
