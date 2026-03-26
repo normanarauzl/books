@@ -19,5 +19,6 @@ struct ContentView: View {
                 GenreListView()
             }
         }
+        .tint(Theme.accent)
     }
 }

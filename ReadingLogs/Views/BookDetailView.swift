@@ -67,8 +67,15 @@ struct BookDetailView: View {
             }
             else {
                 Text(book.title)
+                    .font(Theme.titleFont)
+                
                 Text(book.author)
+                    .font(Theme.bodyFont)
+                    .foregroundStyle(.secondary)
+                
                 Text("Published Year: \(book.publishedYear.description)")
+                    .font(Theme.captionFont)
+                    .foregroundStyle(.secondary)
                 
                 if book.genres.isEmpty == false {
                     HStack {
@@ -101,6 +108,8 @@ struct BookDetailView: View {
                 }
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(Theme.background)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(isEditing ? "Done" : "Edit") {

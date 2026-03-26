@@ -13,15 +13,24 @@ struct NotesListView: View {
     let book: Book
     
     var body: some View {
-        List {
-            ForEach(book.notes) { note in
+        VStack(spacing: 12) {
+            ForEach(Array(book.notes.enumerated()), id: \.element) { index, note in
                 VStack(alignment: .leading) {
                     Text(note.title)
-                        .bold()
+                        .font(Theme.titleFont)
                     Text(note.message)
+                        .font(Theme.bodyFont)
+                        .foregroundStyle(.secondary)
+                }
+                .card()
+                .swipeActions(edge: .trailing) {
+                    Button(role: .destructive) {
+                        deleteNote(IndexSet(integer: index))
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
                 }
             }
-            .onDelete(perform: deleteNote)
         }
     }
     

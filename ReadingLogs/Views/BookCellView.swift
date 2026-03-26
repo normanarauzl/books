@@ -14,19 +14,30 @@ struct BookCellView: View {
     var body: some View {
         
         NavigationLink(value: book) {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 10) {
                 Text(book.title)
-                    .bold()
+                    .font(Theme.titleFont)
                 
-                HStack{
-                    Text("Author: \(book.author)")
+                Text(book.author)
+                    .font(Theme.bodyFont)
+                    .foregroundStyle(.secondary)
+                
+                HStack {
+                    Text("Published \(book.publishedYear.description)")
+                        .font(Theme.captionFont)
+                        .foregroundStyle(.secondary)
+                    
                     Spacer()
-                    Text("Publised on \(book.publishedYear.description)")
+                    
+                    Text("Book")
+                        .font(Theme.captionFont)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(Theme.accent.opacity(0.12), in: Capsule())
+                        .foregroundStyle(Theme.accent)
                 }
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .padding(.top)
             }
+            .card()
         }
     }
 }

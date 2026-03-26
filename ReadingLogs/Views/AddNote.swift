@@ -23,6 +23,8 @@ struct AddNote: View {
             TextField("Message", text: $message)
         }
         .navigationTitle("Add new note")
+        .scrollContentBackground(.hidden)
+        .background(Theme.background)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Cancel") { dismiss() }

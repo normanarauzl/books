@@ -21,10 +21,16 @@ struct GenreListView: View {
             List {
                 ForEach(genres) { genre in
                     Text(genre.name)
+                        .font(Theme.bodyFont)
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
                 }
                 .onDelete(perform: deleteGenre)
             }
-            .navigationTitle("Literary Genre")
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .background(Theme.background)
+            .navigationTitle("Literary Genres")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {

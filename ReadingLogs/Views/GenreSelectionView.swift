@@ -19,8 +19,10 @@ struct GenreSelectionView: View {
                 ForEach(genres) { genre in
                     HStack {
                         Text(genre.name)
+                            .font(Theme.bodyFont)
                         Spacer()
-                        Image(systemName: selectedGenre.contains(genre) ? "cirlce.fill" : "circle.dashed")
+                        Image(systemName: selectedGenre.contains(genre) ? "checkmark.circle.fill" : "circle.dashed")
+                            .foregroundStyle(selectedGenre.contains(genre) ? .green : Theme.accent)
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
@@ -34,5 +36,7 @@ struct GenreSelectionView: View {
             }
         }
         .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .background(Color.clear)
     }
 }

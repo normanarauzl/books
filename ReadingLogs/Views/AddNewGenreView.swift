@@ -36,5 +36,6 @@ struct AddNewGenreView: View {
             .navigationTitle("Add new genre")
             Spacer()
         }
+        .background(Theme.background)
     }
 }

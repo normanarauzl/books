@@ -18,10 +18,15 @@ struct BookListView: View {
             List {
                 ForEach(books) { book in
                     BookCellView(book: book)
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
                 }
                 .onDelete(perform: delete)
             }
-            .navigationTitle("Reading logs")
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .background(Theme.background)
+            .navigationTitle("Reading Logs")
             .navigationDestination(for: Book.self) { BookDetailView(book: $0) }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

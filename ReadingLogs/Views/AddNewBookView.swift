@@ -15,16 +15,16 @@ struct AddNewBookView: View {
     
     @State private var title: String = ""
     @State private var author: String = ""
-    @State private var publisedYear: Int?
+    @State private var publishedYear: Int?
     @State private var selectedGenre = Set<Genre>()
     
     private var isValid: Bool {
-        !title.isEmpty && !author.isEmpty && publisedYear != 0
+        !title.isEmpty && !author.isEmpty && publishedYear != 0
     }
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 12) {
                 Text("Book title")
                 TextField("Enter the title", text: $title)
                     .textFieldStyle(.roundedBorder)
@@ -32,7 +32,7 @@ struct AddNewBookView: View {
                 TextField("Author", text: $author)
                     .textFieldStyle(.roundedBorder)
                 
-                TextField("Published year", value: $publisedYear, format: .number)
+                TextField("Published year", value: $publishedYear, format: .number)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.numberPad)
                 
@@ -47,8 +47,8 @@ struct AddNewBookView: View {
                     Spacer()
                     
                     Button("Add") {
-                        guard let publisedYear else { return }
-                        let book = Book(title: title, author: author, publishedYear: publisedYear)
+                        guard let publishedYear else { return }
+                        let book = Book(title: title, author: author, publishedYear: publishedYear)
                         book.genres = Array(selectedGenre)
                         selectedGenre.forEach { genre in
                             genre.books.append(book)
@@ -63,6 +63,7 @@ struct AddNewBookView: View {
                 }
             }
             .padding()
+            .background(Theme.background)
             .navigationBarTitle("Add new book")
             
         }
